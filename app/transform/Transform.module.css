@@ -1,0 +1,378 @@
+.root {
+  --transform-accent: #f4f4f0;
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 50% -10%, rgba(255, 255, 255, 0.08), transparent 48%),
+    #050505;
+  color: #f6f6f3;
+  font-family: var(--font-sans-stack);
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: max(18px, env(safe-area-inset-top)) 20px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.eyebrow,
+.sectionLabel,
+.phase,
+.metricLabel {
+  font-family: var(--font-mono-stack);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.eyebrow {
+  color: #898989;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.title {
+  margin-top: 5px;
+  font-size: clamp(29px, 8vw, 42px);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.iconButton,
+.navButton,
+.readinessButton,
+.daySelect,
+.sheetButton {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.035);
+  color: #f6f6f3;
+}
+
+.iconButton {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 16px;
+  font-size: 21px;
+}
+
+.progressArea {
+  padding: 13px 20px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.progressMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #999;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.progressTrack {
+  height: 7px;
+  margin-top: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #242424;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: inherit;
+  background: #f4f4f0;
+  transition: width 220ms ease;
+}
+
+.viewport {
+  min-height: 0;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.track {
+  height: 100%;
+  display: flex;
+  will-change: transform;
+  transition: transform 340ms cubic-bezier(0.22, 0.78, 0.22, 1);
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 18px 20px 36px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.slide::-webkit-scrollbar {
+  display: none;
+}
+
+.dayTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.date {
+  color: #999;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.focus {
+  max-width: 420px;
+  margin-top: 7px;
+  font-size: clamp(27px, 7.2vw, 38px);
+  line-height: 1.03;
+  letter-spacing: -0.04em;
+}
+
+.phase {
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  color: #aaa;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.metric {
+  padding: 13px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.metricLabel {
+  color: #797979;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.metricValue {
+  display: block;
+  margin-top: 6px;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.panel {
+  margin-top: 14px;
+  padding: 17px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.sectionLabel {
+  margin-bottom: 12px;
+  color: #818181;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.readinessGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.readinessButton {
+  min-height: 44px;
+  border-radius: 13px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.readinessActive {
+  border-color: rgba(255, 255, 255, 0.72);
+  background: #f4f4f0;
+  color: #070707;
+}
+
+.readinessNote,
+.smallText,
+.safety {
+  color: #a1a1a1;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.readinessNote {
+  margin-top: 10px;
+}
+
+.list {
+  display: grid;
+  gap: 3px;
+}
+
+.task {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.065);
+  font-size: 16px;
+  line-height: 1.38;
+}
+
+.task:last-child {
+  border-bottom: 0;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  accent-color: #f4f4f0;
+}
+
+.taskDone {
+  color: #686868;
+  text-decoration: line-through;
+}
+
+.macroGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.macro {
+  padding: 13px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.macro strong {
+  display: block;
+  font-size: 20px;
+  letter-spacing: -0.03em;
+}
+
+.macro span {
+  color: #858585;
+  font-size: 12px;
+}
+
+.safety {
+  margin-top: 14px;
+  padding: 13px 14px;
+  border-left: 2px solid #c9c9c5;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 1fr minmax(98px, 126px) 1fr;
+  gap: 9px;
+  padding: 12px 20px max(14px, env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(5, 5, 5, 0.94);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.navButton,
+.daySelect {
+  min-height: 48px;
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.navButton:disabled {
+  opacity: 0.35;
+}
+
+.daySelect {
+  width: 100%;
+  padding: 0 10px;
+  text-align: center;
+  text-align-last: center;
+  appearance: none;
+}
+
+.sheetBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  align-items: end;
+  background: rgba(0, 0, 0, 0.58);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.sheet {
+  padding: 22px 20px max(22px, env(safe-area-inset-bottom));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px 28px 0 0;
+  background: #111;
+}
+
+.sheetTitle {
+  font-size: 25px;
+  letter-spacing: -0.035em;
+}
+
+.sheetText {
+  margin-top: 10px;
+  color: #aaa;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.sheetButton {
+  width: 100%;
+  min-height: 50px;
+  margin-top: 16px;
+  border-radius: 15px;
+  font-weight: 700;
+}
+
+@media (max-width: 390px) {
+  .header,
+  .progressArea,
+  .slide,
+  .footer {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .metric:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .task {
+    font-size: 15px;
+  }
+}
