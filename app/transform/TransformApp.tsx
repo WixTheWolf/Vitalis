@@ -104,7 +104,7 @@ export default function TransformApp(){
     setPhotos(current=>({...current,[key]:value}));
   }
 
-  return <main className={styles.root}>
+  return <main className={styles.root} style={{gridTemplateRows:"auto auto auto minmax(0, 1fr) auto"}}>
     <header className={styles.header}>
       <div><div className={styles.eyebrow}>Matthew · 30 days</div><h1 className={styles.title}>Transformation</h1></div>
       <div className={styles.phase}>{mode}</div>
@@ -115,11 +115,11 @@ export default function TransformApp(){
       <div className={styles.progressTrack}><div className={styles.progressFill} style={{width:`${pct}%`}}/></div>
     </section>
 
-    <nav className={styles.tabs}>
-      {(["today","plan","progress","chest"] as Tab[]).map(item=><button key={item} type="button" onClick={()=>setTab(item)} className={`${styles.readinessButton} ${tab===item?styles.readinessActive:""}`}>{item[0].toUpperCase()+item.slice(1)}</button>)}
+    <nav className={styles.tabs} aria-label="Transformation sections" style={{position:"relative",zIndex:20,display:"grid",gridTemplateColumns:"repeat(4,minmax(0,1fr))",gap:8,padding:"12px 20px",borderBottom:"1px solid rgba(255,255,255,.09)",background:"rgba(5,5,5,.98)",pointerEvents:"auto",touchAction:"manipulation"}}>
+      {(["today","plan","progress","chest"] as Tab[]).map(item=><button key={item} type="button" onClick={()=>setTab(item)} style={{position:"relative",zIndex:21,pointerEvents:"auto",touchAction:"manipulation"}} className={`${styles.readinessButton} ${tab===item?styles.readinessActive:""}`}>{item[0].toUpperCase()+item.slice(1)}</button>)}
     </nav>
 
-    <section className={styles.viewport}>
+    <section className={styles.viewport} style={{position:"relative",zIndex:1}}>
       <div className={styles.slide} onTouchStart={event=>touch.current=event.changedTouches[0].clientX} onTouchEnd={event=>{const distance=event.changedTouches[0].clientX-touch.current;if(tab==="plan"&&Math.abs(distance)>55)nav(day+(distance<0?1:-1));}}>
         {tab==="today"&&<>
           <div className={styles.dayTop}>
