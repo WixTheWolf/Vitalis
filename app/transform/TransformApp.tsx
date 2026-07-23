@@ -7,6 +7,14 @@ type Tab="today"|"plan"|"progress"|"chest";
 type Check={weight:string;waist:string;bodyFat:string;sleep:string;readiness:string;energy:string;soreness:string;notes:string};
 
 const EMPTY:Check={weight:"",waist:"",bodyFat:"",sleep:"",readiness:"",energy:"",soreness:"",notes:""};
+const DAY6_SCALE={
+  weight:"175.0",bmi:"25.9",bodyFat:"20.3%",subcutaneous:"17.8%",metabolicAge:"40",
+  lean:"139.4 lb",visceral:"8",water:"57.4%",skeletal:"51.4%",bone:"7.0 lb",
+  bmr:"1766",muscle:"132.2 lb",protein:"18.1%"
+};
+const SEEDED_CHECKS:Record<string,Check>={
+  "5":{weight:"175.0",waist:"",bodyFat:"20.3",sleep:"",readiness:"",energy:"",soreness:"",notes:"Day 6 scale: BMI 25.9; subcutaneous fat 17.8%; metabolic age 40; fat-free mass 139.4 lb; visceral fat 8; body water 57.4%; skeletal muscle 51.4%; bone mass 7.0 lb; BMR 1766 kcal; muscle mass 132.2 lb; protein 18.1%."}
+};
 const STORE="vitalis-transform-v3";
 const PHOTOS=["front","side","back"] as const;
 const PHOTOSETS=[
@@ -69,10 +77,11 @@ export default function TransformApp(){
       const saved=JSON.parse(localStorage.getItem(STORE)||"{}");
       setDay(saved.day??idxToday());
       setDone(saved.done||{});
-      setChecks(saved.checks||{});
+      setChecks({...SEEDED_CHECKS,...(saved.checks||{})});
       setPhotos(saved.photos||{});
     }catch{
       setDay(idxToday());
+      setChecks(SEEDED_CHECKS);
     }
     setReady(true);
   },[]);
@@ -138,7 +147,18 @@ export default function TransformApp(){
             <div><div className={styles.date}>Visual + biometric timeline</div><h2 className={styles.focus}>Progress</h2></div>
             <div className={styles.phase}>{((+check.weight||BASELINE.weight)-BASELINE.weight).toFixed(1)} lb</div>
           </div>
-          <div className={styles.metrics}><Metric a="Baseline" b={`${BASELINE.weight}`}/><Metric a="Current" b={check.weight||"—"}/><Metric a="Body fat" b={`${check.bodyFat||BASELINE.bodyFat}%`}/></div>
+          <div className={styles.metrics}><Metric a="Baseline" b={`${BASELINE.weight}`}/><Metric a="Day 6" b={DAY6_SCALE.weight}/><Metric a="Body fat" b={DAY6_SCALE.bodyFat}/></div>
+          <Panel title="Day 6 · July 23 scale check">
+            <div className={styles.macroGrid}>
+              <Metric a="Weight" b={`${DAY6_SCALE.weight} lb`}/><Metric a="BMI" b={DAY6_SCALE.bmi}/>
+              <Metric a="Body fat" b={DAY6_SCALE.bodyFat}/><Metric a="Subcutaneous" b={DAY6_SCALE.subcutaneous}/>
+              <Metric a="Lean mass" b={DAY6_SCALE.lean}/><Metric a="Muscle mass" b={DAY6_SCALE.muscle}/>
+              <Metric a="Skeletal" b={DAY6_SCALE.skeletal}/><Metric a="Visceral" b={DAY6_SCALE.visceral}/>
+              <Metric a="Water" b={DAY6_SCALE.water}/><Metric a="Protein" b={DAY6_SCALE.protein}/>
+              <Metric a="BMR" b={`${DAY6_SCALE.bmr} kcal`}/><Metric a="Metabolic age" b={DAY6_SCALE.metabolicAge}/>
+            </div>
+            <p className={styles.smallText}>Since baseline: weight −1.2 lb, body fat −0.3 points, subcutaneous fat −0.2 points and visceral fat 9 → 8. Muscle mass reads −0.6 lb, which is small enough to be normal smart-scale hydration noise—not a reason to change the plan.</p>
+          </Panel>
           {PHOTOSETS.map(set=><Panel title={`${set.label} photos`} key={set.label}><div className="photoGrid">{set.src.map((src,index)=><figure key={src}><img src={src} alt={`${set.label} ${PHOTOS[index]}`}/><figcaption>{PHOTOS[index]}</figcaption></figure>)}</div></Panel>)}
           <Panel title="Current photos"><div className="photoGrid">{PHOTOS.map(item=><label key={item} className="photoUpload">{photos[item]?<img src={photos[item]} alt={item}/>:<span>Add {item}</span>}<input type="file" accept="image/*" hidden onChange={event=>addPhoto(item,event.target.files?.[0])}/></label>)}</div></Panel>
           <Panel title="Baseline"><div className={styles.macroGrid}><Metric a="Muscle" b={`${BASELINE.muscle} lb`}/><Metric a="Lean mass" b={`${BASELINE.lean} lb`}/><Metric a="Readiness" b={`${BASELINE.readiness}`}/><Metric a="Sleep" b={`${BASELINE.sleep}`}/></div></Panel>
