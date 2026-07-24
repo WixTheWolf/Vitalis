@@ -1,0 +1,316 @@
+# Instincts generated from https://github.com/WixTheWolf/Vitalis
+# Generated: 2026-07-14T22:23:58.162Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: Vitalis-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/WixTheWolf/Vitalis
+---
+
+# Vitalis Commit Length
+
+## Action
+
+Write moderate-length commit messages (~66 characters)
+
+## Evidence
+
+- Average commit message length: 66 chars
+- Based on 1 commits
+
+---
+id: Vitalis-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/WixTheWolf/Vitalis
+---
+
+# Vitalis Naming Files
+
+## Action
+
+Use camelCase naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: camelCase
+
+---
+id: Vitalis-import-alias
+trigger: "when importing modules"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/WixTheWolf/Vitalis
+---
+
+# Vitalis Import Alias
+
+## Action
+
+Use path aliases (@/, ~/) instead of relative imports
+
+## Evidence
+
+- Import analysis shows alias pattern
+- Example: import { x } from '@/lib/x'
+
+---
+id: Vitalis-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/WixTheWolf/Vitalis
+---
+
+# Vitalis Export Style
+
+## Action
+
+Prefer named exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: named
+
+---
+id: Vitalis-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/WixTheWolf/Vitalis
+---
+
+# Vitalis Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: vitalis-instinct-file-naming
+trigger: "When creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: WixTheWolf/Vitalis
+---
+
+# Vitalis Instinct File Naming
+
+## Action
+
+Name the file using camelCase
+
+## Evidence
+
+- Pattern in namingConventions.files
+
+---
+id: vitalis-instinct-function-naming
+trigger: "When defining a new function"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: WixTheWolf/Vitalis
+---
+
+# Vitalis Instinct Function Naming
+
+## Action
+
+Name the function using camelCase
+
+## Evidence
+
+- Pattern in namingConventions.functions
+
+---
+id: vitalis-instinct-class-naming
+trigger: "When defining a new class"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: WixTheWolf/Vitalis
+---
+
+# Vitalis Instinct Class Naming
+
+## Action
+
+Name the class using PascalCase
+
+## Evidence
+
+- Pattern in namingConventions.classes
+
+---
+id: vitalis-instinct-constant-naming
+trigger: "When declaring a constant"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: WixTheWolf/Vitalis
+---
+
+# Vitalis Instinct Constant Naming
+
+## Action
+
+Name the constant using SCREAMING_SNAKE_CASE
+
+## Evidence
+
+- Pattern in namingConventions.constants
+
+---
+id: vitalis-instinct-import-alias
+trigger: "When importing modules"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: WixTheWolf/Vitalis
+---
+
+# Vitalis Instinct Import Alias
+
+## Action
+
+Use alias import style
+
+## Evidence
+
+- Pattern in importStyle
+
+---
+id: vitalis-instinct-named-exports
+trigger: "When exporting modules or functions"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: WixTheWolf/Vitalis
+---
+
+# Vitalis Instinct Named Exports
+
+## Action
+
+Use named exports
+
+## Evidence
+
+- Pattern in exportStyle
+
+---
+id: vitalis-instinct-try-catch-errors
+trigger: "When handling errors in code"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: WixTheWolf/Vitalis
+---
+
+# Vitalis Instinct Try Catch Errors
+
+## Action
+
+Use try-catch blocks for error handling
+
+## Evidence
+
+- Pattern in errorHandling.style
+
+---
+id: vitalis-instinct-custom-error-class
+trigger: "When defining custom errors"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: WixTheWolf/Vitalis
+---
+
+# Vitalis Instinct Custom Error Class
+
+## Action
+
+Create custom error classes
+
+## Evidence
+
+- Pattern in errorHandling.customErrorClasses
+
+---
+id: vitalis-instinct-test-location
+trigger: "When adding new tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: WixTheWolf/Vitalis
+---
+
+# Vitalis Instinct Test Location
+
+## Action
+
+Place tests in a separate folder from source code
+
+## Evidence
+
+- Pattern in architecture.folderStructure.testLocation
+
+---
+id: vitalis-instinct-git-commit-freeform
+trigger: "When writing a commit message"
+confidence: 0.7
+domain: git
+source: repo-analysis
+source_repo: WixTheWolf/Vitalis
+---
+
+# Vitalis Instinct Git Commit Freeform
+
+## Action
+
+Use a freeform commit message without a strict prefix
+
+## Evidence
+
+- Pattern in commits.type
+- Example: 'Build VITALIS: cinematic 3D biometric observatory as a Next.js app'
+
+---
+id: vitalis-instinct-git-commit-length
+trigger: "When writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: WixTheWolf/Vitalis
+---
+
+# Vitalis Instinct Git Commit Length
+
+## Action
+
+Aim for a commit message length around 66 characters
+
+## Evidence
+
+- Pattern in commits.averageLength
+
